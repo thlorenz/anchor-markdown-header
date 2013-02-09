@@ -9,14 +9,15 @@ function getNodejsId(text) {
 }
 
 /**
-* 
-* @name exports
-* @function
-* @param header {String} The header to be anchored
-* @param mode {String} The anchor mode ('github.com'|'nodejs.org')
-* @param moduleName {String} The name of the module name of the given header (required only for 'nodejs.org' mode)
-* @return {String} The anchor that is compatible with the given mode
-*/
+ * Generates an anchor for the given header and mode.
+ * 
+ * @name anchorMarkdownHeader
+ * @function
+ * @param header      {String} The header to be anchored.
+ * @param mode        {String} The anchor mode ('github.com'|'nodejs.org').
+ * @param moduleName  {String} The name of the module of the given header (required only for 'nodejs.org' mode).
+ * @return            {String} The header anchor that is compatible with the given mode.
+  */
 module.exports = function anchorMarkdownHeader(header, mode, moduleName) {
   mode = mode || 'github.com';
   var replace;
