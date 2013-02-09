@@ -10,11 +10,12 @@ var anchor = require('anchor-markdown-header');
 anchor('"playerJoined" (player)'); 
 // --> ["playerJoined" (player)](#playerjoined-player)
 
-anchor('fs.rename(oldPath, newPath, [callback])', 'nodejs.org, 'fs') 
+anchor('fs.rename(oldPath, newPath, [callback])', 'nodejs.org', 'fs') 
 // --> [fs.rename(oldPath, newPath, [callback])](#fs_fs_rename_oldpath_newpath_callback)
 
 // github.com mode is default
 anchor('"playerJoined" (player)') === anchor('"playerJoined" (player)', 'github.com'); 
+// --> true
 ```
 
 ## API
