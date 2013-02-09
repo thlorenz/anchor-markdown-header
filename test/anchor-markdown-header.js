@@ -12,7 +12,7 @@ function checkResult(t, mode, moduleName, header, href) {
   
 test('generating anchor in github mode', function (t) {
 
-  var check = checkResult.bind(null, t, 'github', undefined);
+  var check = checkResult.bind(null, t, undefined, undefined);
 
   [ [ 'intro',  '#intro' ]
   , [ 'mineflayer.windows.Window (base class)',  '#mineflayerwindowswindow-base-class']

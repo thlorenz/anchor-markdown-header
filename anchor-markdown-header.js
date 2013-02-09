@@ -9,11 +9,11 @@ function getNodejsId(text) {
 }
 
 module.exports = function anchorMarkdownHeader(header, mode, moduleName) {
-  mode = mode || 'github';
+  mode = mode || 'github.com';
   var replace;
 
   switch(mode) {
-    case 'github':
+    case 'github.com':
       replace = function (hd) {
           return hd.replace(/ /g,'-')
                    .replace(/[\[\]`.,()*"]/g,'');
