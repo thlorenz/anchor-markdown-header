@@ -26,7 +26,7 @@ module.exports = function anchorMarkdownHeader(header, mode, moduleName) {
     case 'github.com':
       replace = function (hd) {
           return hd.replace(/ /g,'-')
-                   .replace(/[\[\]`.,()*"]/g,'');
+                   .replace(/[:\[\]`.,()*"]/g,'');
         };
       break;
     case 'nodejs.org': 

@@ -19,6 +19,7 @@ test('generating anchor in github mode', function (t) {
   , [ 'window.findInventoryItem(itemType, metadata, [notFull])', '#windowfindinventoryitemitemtype-metadata-notfull' ]
   , [ 'furnace "updateSlot" (oldItem, newItem)', '#furnace-updateslot-olditem-newitem' ]
   , [ '"playerJoined" (player)', '#playerjoined-player' ]
+  , [ 'proxyquire(request: String, stubs: Object)', '#proxyquirerequest-string-stubs-object' ]
   ].forEach(function (x) { check(x[0], x[1]) });
   
 })
