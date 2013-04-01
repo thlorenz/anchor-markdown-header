@@ -8,13 +8,19 @@ function getNodejsId(text) {
   return text;
 }
 
+function getGithubId(text) {
+  return text
+    .replace(/ /g,'-')
+    .replace(/[:\[\]`.,()*"]/g,'');
+}
+
 /**
  * Generates an anchor for the given header and mode.
  * 
  * @name anchorMarkdownHeader
  * @function
  * @param header      {String} The header to be anchored.
- * @param mode        {String} The anchor mode ('github.com'|'nodejs.org').
+ * @param mode        {String} The anchor mode ('github.com'|'nodejs.org|bitbucket.org').
  * @param moduleName  {String} The name of the module of the given header (required only for 'nodejs.org' mode).
  * @return            {String} The header anchor that is compatible with the given mode.
   */
@@ -24,10 +30,12 @@ module.exports = function anchorMarkdownHeader(header, mode, moduleName) {
 
   switch(mode) {
     case 'github.com':
-      replace = function (hd) {
-          return hd.replace(/ /g,'-')
-                   .replace(/[:\[\]`.,()*"]/g,'');
-        };
+      replace = getGithubId;
+      break;
+    case 'bitbucket.org':
+      replace = function (text) { 
+        return 'markdown-header-' + getGithubId(text); 
+      };
       break;
     case 'nodejs.org': 
       if (!moduleName) throw new Error('Need module name to generate proper anchor for ' + mode);

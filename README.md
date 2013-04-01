@@ -25,7 +25,7 @@ anchor('"playerJoined" (player)') === anchor('"playerJoined" (player)', 'github.
 ```js
 /**
  * @param header      {String} The header to be anchored.
- * @param mode        {String} The anchor mode ('github.com'|'nodejs.org').
+ * @param mode        {String} The anchor mode ('github.com'|'nodejs.org|bitbucket.org').
  * @param moduleName  {String} The name of the module of the given header (required only for 'nodejs.org' mode).
  * @return            {String} The header anchor that is compatible with the given mode.
   */

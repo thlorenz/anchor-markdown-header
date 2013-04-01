@@ -45,3 +45,14 @@ test('generating anchor in nodejs.org mode for crypto module', function (t) {
   , [ 'crypto.pbkdf2(password, salt, iterations, keylen, callback)' , '#crypto_crypto_pbkdf2_password_salt_iterations_keylen_callback' ]
   ].forEach(function (x) { check(x[0], x[1]) });
 })
+
+test('generating anchor in bitbucket mode', function (t) {
+
+  var check = checkResult.bind(null, t, 'bitbucket.org', undefined);
+
+  [ [ 'intro',  '#markdown-header-intro' ]
+  , [ 'mineflayer.windows.Window (base class)',  '#markdown-header-mineflayerwindowswindow-base-class']
+  , [ 'proxyquire(request: String, stubs: Object)', '#markdown-header-proxyquirerequest-string-stubs-object' ]
+  ].forEach(function (x) { check(x[0], x[1]) });
+  
+})
