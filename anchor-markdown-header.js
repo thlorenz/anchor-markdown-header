@@ -43,6 +43,8 @@ module.exports = function anchorMarkdownHeader(header, mode, moduleName) {
           return getNodejsId(moduleName + '.' + hd);
       };
       break;
+    default:
+      throw new Error('Unknown mode: ' + mode);
   }
 
   var href = replace(header.trim().toLowerCase());
