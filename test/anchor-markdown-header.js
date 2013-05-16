@@ -22,7 +22,9 @@ test('generating anchor in github mode', function (t) {
   , [ 'window.findInventoryItem(itemType, metadata, [notFull])', null, '#windowfindinventoryitemitemtype-metadata-notfull' ]
   , [ 'furnace "updateSlot" (oldItem, newItem)', null, '#furnace-updateslot-olditem-newitem' ]
   , [ '"playerJoined" (player)', null, '#playerjoined-player' ]
-  , [ 'proxyquire(request: String, stubs: Object)', null, '#proxyquirerequest-string-stubs-object' ]
+  , [ 'proxyquire(request: String, stubs: Object)', null, '#proxyquirerequest-string-stubs-object' ],
+  , [ 'create object (post /db/create)', null, '#create-object-post-dbcreate' ]
+  , [ 'where is it?', null, '#where-is-it' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
 })
 
