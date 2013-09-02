@@ -28,6 +28,15 @@ test('generating anchor in github mode', function (t) {
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
 })
 
+test('generating anchor in github wiki mode', function (t) {
+
+  var check = checkResult.bind(null, t, "github wiki", undefined);
+
+  [ [ 'intro', null,  '?#intro' ]
+  , [ 'intro', 0,  '?#intro' ]
+  ].forEach(function (x) { check(x[0], x[1], x[2]) });
+})
+
 test('generating anchor in nodejs.org mode for fs module', function (t) {
 
   var check = checkResult.bind(null, t, 'nodejs.org', 'fs');
