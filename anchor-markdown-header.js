@@ -12,7 +12,7 @@ function getNodejsId(text, repetition) {
     text += '_' + repetition;
   }
 
-  return text;
+  return "#" + text;
 }
 
 function basicGithubId(text) {
@@ -27,7 +27,7 @@ function getGithubId(text, repetition) {
     text += '-' + repetition;
   }
 
-  return text;
+  return "#" + text;
 }
 
 function getBitbucketId(text, repetition) {
@@ -39,7 +39,7 @@ function getBitbucketId(text, repetition) {
     text += '_' + repetition;
   }
 
-  return text;
+  return "#" + text;
 }
 
 /**
@@ -76,5 +76,5 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
 
   var href = replace(header.trim().toLowerCase(), repetition);
 
-  return '[' + header + '](#' + href + ')';
+  return '[' + header + '](' + href + ')';
 };
