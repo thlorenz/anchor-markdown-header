@@ -12,7 +12,7 @@ function getNodejsId(text, repetition) {
     text += '_' + repetition;
   }
 
-  return text;
+  return "#" + text;
 }
 
 function basicGithubId(text) {
@@ -27,7 +27,7 @@ function getGithubId(text, repetition) {
     text += '-' + repetition;
   }
 
-  return text;
+  return "#" + text;
 }
 
 function getBitbucketId(text, repetition) {
@@ -39,7 +39,15 @@ function getBitbucketId(text, repetition) {
     text += '_' + repetition;
   }
 
-  return text;
+  return "#" + text;
+}
+
+function getGithubWikiId(text, repetition) {
+    text = getGithubId(text, repetition);
+
+    // GitHub wikis rewrite links to "#foo" as "#wiki-foo", so we work
+    // around that by specifying empty query parameters too.
+    return "?" + text;
 }
 
 /**
@@ -48,7 +56,7 @@ function getBitbucketId(text, repetition) {
  * @name anchorMarkdownHeader
  * @function
  * @param header      {String} The header to be anchored.
- * @param mode        {String} The anchor mode ('github.com'|'nodejs.org|bitbucket.org').
+ * @param mode        {String} The anchor mode ('github.com'|'github.com/wiki'|'nodejs.org'|'bitbucket.org').
  * @param repetition  {Number} The nth occurrence of this header text, starting with 0. Not required for the 0th instance.
  * @param moduleName  {String} The name of the module of the given header (required only for 'nodejs.org' mode).
  * @return            {String} The header anchor that is compatible with the given mode.
@@ -60,6 +68,9 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
   switch(mode) {
     case 'github.com':
       replace = getGithubId;
+      break;
+    case 'github.com/wiki':
+      replace = getGithubWikiId;
       break;
     case 'bitbucket.org':
       replace = getBitbucketId;
@@ -76,5 +87,5 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
 
   var href = replace(header.trim().toLowerCase(), repetition);
 
-  return '[' + header + '](#' + href + ')';
+  return '[' + header + '](' + href + ')';
 };
