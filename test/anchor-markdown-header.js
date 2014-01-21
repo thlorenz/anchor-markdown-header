@@ -1,7 +1,7 @@
 'use strict';
 /*jshint asi:true */
 
-var test   =  require('trap').test
+var test   =  require('tap').test
   , format =  require('util').format
   , anchor =  require('..')
 
@@ -11,7 +11,7 @@ function checkResult(t, mode, moduleName, header, repetition, href) {
   t.equal(anchor(header, mode, repetition, moduleName), expectedAnchor, resultText);
 }
 
-test('generating anchor in github mode', function (t) {
+test('\ngenerating anchor in github mode', function (t) {
 
   var check = checkResult.bind(null, t, undefined, undefined);
 
@@ -26,9 +26,10 @@ test('generating anchor in github mode', function (t) {
   , [ 'create object (post /db/create)', null, '#create-object-post-dbcreate' ]
   , [ 'where is it?', null, '#where-is-it' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
 })
 
-test('generating anchor in nodejs.org mode for fs module', function (t) {
+test('\ngenerating anchor in nodejs.org mode for fs module', function (t) {
 
   var check = checkResult.bind(null, t, 'nodejs.org', 'fs');
 
@@ -40,18 +41,20 @@ test('generating anchor in nodejs.org mode for fs module', function (t) {
   , [ "fs.appendFile(filename, data, encoding='utf8', [callback])", null, '#fs_fs_appendfile_filename_data_encoding_utf8_callback' ]
   , [ 'Class: fs.FSWatcher', null, '#fs_class_fs_fswatcher' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
 })
 
-test('generating anchor in nodejs.org mode for crypto module', function (t) {
+test('\ngenerating anchor in nodejs.org mode for crypto module', function (t) {
 
   var check = checkResult.bind(null, t, 'nodejs.org', 'crypto');
 
   [ [ 'cipher.update(data, [input_encoding], [output_encoding])', null, '#crypto_cipher_update_data_input_encoding_output_encoding' ]
   , [ 'crypto.pbkdf2(password, salt, iterations, keylen, callback)', null, '#crypto_crypto_pbkdf2_password_salt_iterations_keylen_callback' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
 })
 
-test('generating anchor in bitbucket mode', function (t) {
+test('\ngenerating anchor in bitbucket mode', function (t) {
 
   var check = checkResult.bind(null, t, 'bitbucket.org', undefined);
 
@@ -61,5 +64,6 @@ test('generating anchor in bitbucket mode', function (t) {
   , [ 'mineflayer.windows.Window (base class)', null, '#markdown-header-mineflayerwindowswindow-base-class']
   , [ 'proxyquire(request: String, stubs: Object)', null, '#markdown-header-proxyquirerequest-string-stubs-object' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
 })
 
