@@ -27,7 +27,6 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'where is it?', null, '#where-is-it' ]
   , [ "'webdav' Upload Method for 'dput'", null, '#webdav-upload-method-for-dput' ]
   , [ 'remove ;;semi;colons', null, '#remove-semicolons' ]
-
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
