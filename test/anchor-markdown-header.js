@@ -26,7 +26,9 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'create object (post /db/create)', null, '#create-object-post-dbcreate' ]
   , [ 'where is it?', null, '#where-is-it' ]
   , [ "'webdav' Upload Method for 'dput'", null, '#webdav-upload-method-for-dput' ]
-  , [ 'remove ;;semi;colons', null, '#remove-semicolons' ]
+  , [ 'remove ;;semi;colons', null, '#remove-semicolons' ],
+  , [ 'remove {curly braces}{}', null, '#remove-curly-braces'],
+  , [ 'remove ++++pluses+', null, '#remove-pluses']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
