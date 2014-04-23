@@ -29,6 +29,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'remove ;;semi;colons', null, '#remove-semicolons' ],
   , [ 'remove {curly braces}{}', null, '#remove-curly-braces'],
   , [ 'remove ++++pluses+', null, '#remove-pluses']
+  , [ 'remove escape codes %3Cstatic%3E coreappupevents %E2%86%92 object', null, '#remove-escape-codes-static-coreappupevents--object']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })

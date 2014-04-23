@@ -16,7 +16,13 @@ function getNodejsId(text, repetition) {
 }
 
 function basicGithubId(text) {
-  return text.replace(/ /g,'-').replace(/[\/?:\[\]`.,()*"';{}+]/g,'');
+  return text.replace(/ /g,'-')
+    // escape codes
+    .replace(/%([abcdef]|\d){2,2}/ig, '')
+    // single chars that are removed
+    .replace(/[\/?:\[\]`.,()*"';{}+]/g,'')
+    ;
+          
 }
 
 function getGithubId(text, repetition) {
