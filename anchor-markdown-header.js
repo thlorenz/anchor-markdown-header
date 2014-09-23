@@ -48,16 +48,16 @@ function getBitbucketId(text, repetition) {
   return text;
 }
 
-//see https://github.com/gitlabhq/gitlabhq/blob/master/doc/markdown/markdown.md#header-ids-and-links
+// see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/markdown/markdown.md#header-ids-and-links
 function getGitlabId(text, repetition) {
-  var text = text.replace(/<(.*)>(.*)<\/\1>/g,"$2") //html tags
-          .replace(/!\[.*\]\(.*\)/g,'') //image tags
-          .replace(/\[(.*)\]\(.*\)/,"$1") //url
-          .replace(/[^a-z0-9_-]/g,'-') //non alpha
-          .replace(/[-]+/g,'-') //duplicated hyphen
-          .replace(/^-/,'') //ltrim hyphen
-          .replace(/-$/,''); //rtrim hyphen
-  return text;
+  return text
+    .replace(/<(.*)>(.*)<\/\1>/g,"$2") // html tags
+    .replace(/!\[.*\]\(.*\)/g,'')      // image tags
+    .replace(/\[(.*)\]\(.*\)/,"$1")    // url
+    .replace(/[^a-z0-9_-]/g,'-')       // non alpha
+    .replace(/[-]+/g,'-')              // duplicated hyphen
+    .replace(/^-/,'')                  // ltrim hyphen
+    .replace(/-$/,'');                 // rtrim hyphen
 }
 
 
