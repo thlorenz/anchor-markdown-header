@@ -75,12 +75,12 @@ test('\ngenerating anchor in bitbucket mode', function (t) {
 
 test('\ngenerating anchor in gitlab mode', function (t) {
 
-	var check = checkResult.bind(null, t, 'gitlab.com', undefined);
+  var check = checkResult.bind(null, t, 'gitlab.com', undefined);
 
-	[ [ 'intro', null, '#intro']
+  [ [ 'intro', null, '#intro']
   , [ 'intro', 1, '#intro']
-	, ['..Ab_c-d. e [anchor](url) ![alt text](url)..', null, '#ab_c-d-e-anchor']
-	].forEach(function (x) { check(x[0], x[1], x[2]) });
-	t.end();
+  , ['..Ab_c-d. e [anchor](url) ![alt text](url)..', null, '#ab_c-d-e-anchor']
+  ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
 })
 
