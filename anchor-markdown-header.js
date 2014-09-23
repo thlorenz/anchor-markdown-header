@@ -48,6 +48,19 @@ function getBitbucketId(text, repetition) {
   return text;
 }
 
+//see https://github.com/gitlabhq/gitlabhq/blob/master/doc/markdown/markdown.md#header-ids-and-links
+function getGitlabId(text, repetition) {
+  var text = text.replace(/<(.*)>(.*)<\/\1>/g,"$2") //html tags
+          .replace(/!\[.*\]\(.*\)/g,'') //image tags
+          .replace(/\[(.*)\]\(.*\)/,"$1") //url
+          .replace(/[^a-z0-9_-]/g,'-') //non alpha
+          .replace(/[-]+/g,'-') //duplicated hyphen
+          .replace(/^-/,'') //ltrim hyphen
+          .replace(/-$/,''); //rtrim hyphen
+  return text;
+}
+
+
 /**
  * Generates an anchor for the given header and mode.
  * 
@@ -69,6 +82,9 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
       break;
     case 'bitbucket.org':
       replace = getBitbucketId;
+      break;
+    case 'gitlab.com':
+      replace = getGitlabId;
       break;
     case 'nodejs.org':
       if (!moduleName) throw new Error('Need module name to generate proper anchor for ' + mode);
