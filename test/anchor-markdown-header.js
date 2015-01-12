@@ -62,6 +62,32 @@ test('\ngenerating anchor in ghost mode', function (t) {
   t.end();
 })
 
+test('\ngenerating anchor in ghost mode', function (t) {
+
+  var check = checkResult.bind(null, t, 'ghost.org', undefined);
+
+  [ [ 'intro', null,  '#intro' ]
+  , [ 'intro', 0,  '#intro' ]
+  , [ 'repetitions not supported', 1,  '#repetitionsnotsupported' ]
+  , [ 'mineflayer.windows.Window (base class)', null,  '#mineflayerwindowswindowbaseclass']
+  , [ 'window.findInventoryItem(itemType, metadata, [notFull])', null, '#windowfindinventoryitemitemtypemetadatanotfull' ]
+  , [ 'furnace "updateSlot" (oldItem, newItem)', null, '#furnaceupdateslotolditemnewitem' ]
+  , [ '"playerJoined" (player)', null, '#playerjoinedplayer' ]
+  , [ 'proxyquire(request: String, stubs: Object)', null, '#proxyquirerequeststringstubsobject' ],
+  , [ 'create object (post /db/create)', null, '#createobjectpostdbcreate' ]
+  , [ 'where is it?', null, '#whereisit' ]
+  , [ "'webdav' Upload Method for 'dput'", null, '#webdavuploadmethodfordput' ]
+  , [ 'remove ;;semi;colons', null, '#removesemicolons' ],
+  , [ 'remove {curly braces}{}', null, '#removecurlybraces'],
+  , [ 'remove ++++pluses+', null, '#removepluses']
+  , [ 'does not remove escape codes instead removes % as in %3Cstatic%E3 %86 %3Cstatic%E3 coreappupevents %E2%86%92 object', null, '#doesnotremoveescapecodesinsteadremovesasin3cstatice3863cstatice3coreappupeventse28692object']
+  , [ 'remove lt and gt <static>mycall', null, '#removeltandgtstaticmycall']
+  , [ 'remove special chars `!@#%^&*()-+=[{]}\\|;:\'\",<.>/?', null, '#removespecialchars']
+  , [ 'replace $ with d and ~ with t', null, '#replacedwithdandtwitht']
+  ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
+})
+
 test('\ngenerating anchor in nodejs.org mode for fs module', function (t) {
 
   var check = checkResult.bind(null, t, 'nodejs.org', 'fs');
