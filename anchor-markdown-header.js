@@ -48,6 +48,26 @@ function getBitbucketId(text, repetition) {
   return text;
 }
 
+function basicGhostId(text) {
+  return text.replace(/ /g,'')
+    // escape codes are not removed
+    // single chars that are removed
+    .replace(/[\/?:\[\]`.,()*"';{}\-+=<>!@#%^&\\\|]/g,'')
+    // $ replaced with d
+    .replace(/\$/g, 'd')
+    // ~ replaced with t
+    .replace(/~/g, 't')
+    ;
+}
+
+function getGhostId(text) {
+  text = basicGhostId(text);
+
+  // Repetitions not supported
+
+  return text;
+}
+
 // see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/markdown/markdown.md#header-ids-and-links
 function getGitlabId(text, repetition) {
   return text
@@ -67,7 +87,7 @@ function getGitlabId(text, repetition) {
  * @name anchorMarkdownHeader
  * @function
  * @param header      {String} The header to be anchored.
- * @param mode        {String} The anchor mode (github.com|nodejs.org|bitbucket.org|gitlab.com).
+ * @param mode        {String} The anchor mode (github.com|nodejs.org|bitbucket.org|ghost.org|gitlab.com).
  * @param repetition  {Number} The nth occurrence of this header text, starting with 0. Not required for the 0th instance.
  * @param moduleName  {String} The name of the module of the given header (required only for 'nodejs.org' mode).
  * @return            {String} The header anchor that is compatible with the given mode.
@@ -91,6 +111,9 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
       replace = function (hd, repetition) {
           return getNodejsId(moduleName + '.' + hd, repetition);
       };
+      break;
+    case 'ghost.org':
+      replace = getGhostId;
       break;
     default:
       throw new Error('Unknown mode: ' + mode);
