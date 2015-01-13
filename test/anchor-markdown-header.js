@@ -32,6 +32,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'remove escape codes %3Cstatic%E3 coreappupevents %E2%86%92 object', null, '#remove-escape-codes-static-coreappupevents--object']
   , [ 'remove lt and gt <static>mycall', null, '#remove-lt-and-gt-staticmycall']
   , [ 'remove exclamation point!', null, '#remove-exclamation-point']
+  , [ 'remove = sign', null, '#remove--sign']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
