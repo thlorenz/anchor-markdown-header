@@ -121,5 +121,5 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
 
   var href = replace(header.trim().toLowerCase(), repetition);
 
-  return '[' + header + '](#' + href + ')';
+  return '[' + header + '](#' + encodeURI(href) + ')';
 };
