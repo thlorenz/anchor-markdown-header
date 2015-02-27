@@ -112,3 +112,14 @@ test('\ngenerating anchor in gitlab mode', function (t) {
   t.end();
 })
 
+test('\ngenerating anchor for non-english header', function (t) {
+
+  var check = checkResult.bind(null, t, undefined, undefined);
+
+  [ [ '标题', null, '#%E6%A0%87%E9%A2%98']
+  , [ '标题', 0, '#%E6%A0%87%E9%A2%98' ]
+  , [ '标题', 1, '#%E6%A0%87%E9%A2%98-1']
+  , [ '中间有空格 和.符号.的（标题）', null, '#%E4%B8%AD%E9%97%B4%E6%9C%89%E7%A9%BA%E6%A0%BC-%E5%92%8C%E7%AC%A6%E5%8F%B7%E7%9A%84%EF%BC%88%E6%A0%87%E9%A2%98%EF%BC%89']
+  ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
+})
