@@ -33,6 +33,8 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'remove lt and gt <static>mycall', null, '#remove-lt-and-gt-staticmycall']
   , [ 'remove exclamation point!', null, '#remove-exclamation-point']
   , [ 'remove = sign', null, '#remove--sign']
+  , [ 'class~method', null, '#classmethod']
+  , [ 'func($event)', null, '#funcevent']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
@@ -97,6 +99,8 @@ test('\ngenerating anchor in bitbucket mode', function (t) {
   , [ 'intro', 1, '#markdown-header-intro_1' ]
   , [ 'mineflayer.windows.Window (base class)', null, '#markdown-header-mineflayerwindowswindow-base-class']
   , [ 'proxyquire(request: String, stubs: Object)', null, '#markdown-header-proxyquirerequest-string-stubs-object' ]
+  , [ 'class~method', null, '#markdown-header-classmethod']
+  , [ 'func($event)', null, '#markdown-header-funcevent']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
