@@ -20,7 +20,7 @@ function basicGithubId(text) {
     // escape codes
     .replace(/%([abcdef]|\d){2,2}/ig, '')
     // single chars that are removed
-    .replace(/[\/?!:\[\]`.,()*"';{}+=<>~\$]/g,'')
+    .replace(/[\/?!:\[\]`.,()*"';{}+=<>~\$|#]/g,'')
     ;
           
 }
@@ -38,6 +38,9 @@ function getGithubId(text, repetition) {
 
 function getBitbucketId(text, repetition) {
   text = 'markdown-header-' + basicGithubId(text);
+
+  // BitBucket condenses consecutive hyphens (GitHub doesn't)
+  text = text.replace(/--+/g, '-');
 
   // If no repetition, or if the repetition is 0 then ignore. Otherwise append '_' and the number.
   // https://groups.google.com/d/msg/bitbucket-users/XnEWbbzs5wU/Fat0UdIecZkJ

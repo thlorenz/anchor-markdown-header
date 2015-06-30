@@ -33,6 +33,9 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'remove lt and gt <static>mycall', null, '#remove-lt-and-gt-staticmycall']
   , [ 'remove exclamation point!', null, '#remove-exclamation-point']
   , [ 'remove = sign', null, '#remove--sign']
+  , [ '`history [pgn | alg]`', null, '#history-pgn--alg']
+  , [ 'preseve consecutive | = hyphens', null, '#preseve-consecutive---hyphens']
+  , [ 'Demo #1: using the `-s` option', null, '#demo-1-using-the--s-option']
   , [ 'class~method', null, '#classmethod']
   , [ 'func($event)', null, '#funcevent']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
@@ -101,6 +104,9 @@ test('\ngenerating anchor in bitbucket mode', function (t) {
   , [ 'proxyquire(request: String, stubs: Object)', null, '#markdown-header-proxyquirerequest-string-stubs-object' ]
   , [ 'class~method', null, '#markdown-header-classmethod']
   , [ 'func($event)', null, '#markdown-header-funcevent']
+  , [ '`history [pgn | alg]`', null, '#markdown-header-history-pgn-alg']
+  , [ 'condense consecutive | = hyphens', null, '#markdown-header-condense-consecutive-hyphens']
+  , [ 'Demo #1: using the `-s` option', null, '#markdown-header-demo-1-using-the-s-option']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
