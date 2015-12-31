@@ -38,6 +38,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'Demo #1: using the `-s` option', null, '#demo-1-using-the--s-option']
   , [ 'class~method', null, '#classmethod']
   , [ 'func($event)', null, '#funcevent']
+  , [ 'trailing *', null, '#trailing-']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
