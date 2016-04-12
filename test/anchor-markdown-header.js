@@ -42,6 +42,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'My Cool@Header', null, '#my-coolheader']
   , [ 'module-specific-variables-using-jsdoc-@module', null, '#module-specific-variables-using-jsdoc-module']
   , [ 'Jack & Jill', null, '#jack--jill']
+  , [ 'replace – or —', null, '#replace--or-']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
