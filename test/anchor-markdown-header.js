@@ -39,6 +39,8 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'class~method', null, '#classmethod']
   , [ 'func($event)', null, '#funcevent']
   , [ 'trailing *', null, '#trailing-']
+  , [ 'My Cool@Header', null, '#my-coolheader']
+  , [ 'module-specific-variables-using-jsdoc-@module', null, '#module-specific-variables-using-jsdoc-module']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
