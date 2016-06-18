@@ -77,7 +77,8 @@ function getGitlabId(text, repetition) {
     .replace(/<(.*)>(.*)<\/\1>/g,"$2") // html tags
     .replace(/!\[.*\]\(.*\)/g,'')      // image tags
     .replace(/\[(.*)\]\(.*\)/,"$1")    // url
-    .replace(/[^a-z0-9_-]/g,'-')       // non alpha
+    .replace(/[^a-z0-9_-\s]/g,'')       // non alpha
+    .replace(/[\s]/g,'-')              // spaces
     .replace(/[-]+/g,'-')              // duplicated hyphen
     .replace(/^-/,'')                  // ltrim hyphen
     .replace(/-$/,'');                 // rtrim hyphen
