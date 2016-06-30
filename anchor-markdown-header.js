@@ -73,7 +73,7 @@ function getGhostId(text) {
 
 // see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/markdown/markdown.md#header-ids-and-links
 function getGitlabId(text, repetition) {
-  return text
+  text = text
     .replace(/<(.*)>(.*)<\/\1>/g,"$2") // html tags
     .replace(/!\[.*\]\(.*\)/g,'')      // image tags
     .replace(/\[(.*)\]\(.*\)/,"$1")    // url
@@ -81,6 +81,11 @@ function getGitlabId(text, repetition) {
     .replace(/[-]+/g,'-')              // duplicated hyphen
     .replace(/^-/,'')                  // ltrim hyphen
     .replace(/-$/,'');                 // rtrim hyphen
+  // If no repetition, or if the repetition is 0 then ignore. Otherwise append '-' and the number.
+  if (repetition) {
+    text += '-' + repetition;
+  }
+  return text;
 }
 
 
