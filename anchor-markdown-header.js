@@ -1,6 +1,6 @@
 'use strict';
 
-// https://github.com/joyent/node/blob/192192a09e2d2e0d6bdd0934f602d2dbbf10ed06/tools/doc/html.js#L172-L183 
+// https://github.com/joyent/node/blob/192192a09e2d2e0d6bdd0934f602d2dbbf10ed06/tools/doc/html.js#L172-L183
 function getNodejsId(text, repetition) {
   text = text.replace(/[^a-z0-9]+/g, '_');
   text = text.replace(/^_+|_+$/, '');
@@ -21,8 +21,10 @@ function basicGithubId(text) {
     .replace(/%([abcdef]|\d){2,2}/ig, '')
     // single chars that are removed
     .replace(/[\/?!:\[\]`.,()*"';{}+=<>~\$|#@]/g,'')
+    // CJK punctuations that are removed
+    .replace(/[。？！，、；：“”【】（）〔〕［］﹃﹄“ ”‘’﹁﹂—…－～《》〈〉「」]/g, '')
     ;
-          
+
 }
 
 function getGithubId(text, repetition) {
@@ -71,13 +73,15 @@ function getGhostId(text) {
   return text;
 }
 
-// see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/markdown/markdown.md#header-ids-and-links
+// see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/user/markdown.md#header-ids-and-links
 function getGitlabId(text, repetition) {
   return text
     .replace(/<(.*)>(.*)<\/\1>/g,"$2") // html tags
     .replace(/!\[.*\]\(.*\)/g,'')      // image tags
     .replace(/\[(.*)\]\(.*\)/,"$1")    // url
-    .replace(/[^a-z0-9_-]/g,'-')       // non alpha
+    .replace(/\s+/g, '-')              // All spaces are converted to hyphens
+    .replace(/[\/?!:\[\]`.,()*"';{}+=<>~\$|#@]/g,'') // All non-word text (e.g., punctuation, HTML) is removed
+    .replace(/[。？！，、；：“”【】（）〔〕［］﹃﹄“ ”‘’﹁﹂—…－～《》〈〉「」]/g, '') // remove CJK punctuations
     .replace(/[-]+/g,'-')              // duplicated hyphen
     .replace(/^-/,'')                  // ltrim hyphen
     .replace(/-$/,'');                 // rtrim hyphen
@@ -86,7 +90,7 @@ function getGitlabId(text, repetition) {
 
 /**
  * Generates an anchor for the given header and mode.
- * 
+ *
  * @name anchorMarkdownHeader
  * @function
  * @param header      {String} The header to be anchored.

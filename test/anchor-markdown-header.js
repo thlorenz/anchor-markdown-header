@@ -7,7 +7,7 @@ var test   =  require('tap').test
 
 function checkResult(t, mode, moduleName, header, repetition, href) {
   var expectedAnchor = format('[%s](%s)', header, href)
-  var resultText = 'generates ' + expectedAnchor + ' for header ' + header + ' and repetition = ' + repetition; 
+  var resultText = 'generates ' + expectedAnchor + ' for header ' + header + ' and repetition = ' + repetition;
   t.equal(anchor(header, mode, repetition, moduleName), expectedAnchor, resultText);
 }
 
@@ -77,7 +77,7 @@ test('\ngenerating anchor in nodejs.org mode for fs module', function (t) {
 
   [ [ 'fs.rename(oldPath, newPath, [callback])', null, '#fs_fs_rename_oldpath_newpath_callback' ]
   , [ 'fs.rename(oldPath, newPath, [callback])', 0, '#fs_fs_rename_oldpath_newpath_callback' ]
-  , [ 'fs.rename(oldPath, newPath, [callback])', 1, '#fs_fs_rename_oldpath_newpath_callback_1' ] 
+  , [ 'fs.rename(oldPath, newPath, [callback])', 1, '#fs_fs_rename_oldpath_newpath_callback_1' ]
   , [ 'fs.truncate(fd, len, [callback])', null, '#fs_fs_truncate_fd_len_callback' ]
   , [ 'fs.symlink(srcpath, dstpath, [type], [callback])', null, '#fs_fs_symlink_srcpath_dstpath_type_callback' ]
   , [ "fs.appendFile(filename, data, encoding='utf8', [callback])", null, '#fs_fs_appendfile_filename_data_encoding_utf8_callback' ]
@@ -121,6 +121,7 @@ test('\ngenerating anchor in gitlab mode', function (t) {
   [ [ 'intro', null, '#intro']
   , [ 'intro', 1, '#intro']
   , ['..Ab_c-d. e [anchor](url) ![alt text](url)..', null, '#ab_c-d-e-anchor']
+  , [ '存在，【中文】；《标点》、符号！的标题？', null, '#%E5%AD%98%E5%9C%A8%E4%B8%AD%E6%96%87%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%A0%87%E9%A2%98']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
@@ -132,7 +133,8 @@ test('\ngenerating anchor for non-english header', function (t) {
   [ [ '标题', null, '#%E6%A0%87%E9%A2%98']
   , [ '标题', 0, '#%E6%A0%87%E9%A2%98' ]
   , [ '标题', 1, '#%E6%A0%87%E9%A2%98-1']
-  , [ '中间有空格 和.符号.的（标题）', null, '#%E4%B8%AD%E9%97%B4%E6%9C%89%E7%A9%BA%E6%A0%BC-%E5%92%8C%E7%AC%A6%E5%8F%B7%E7%9A%84%EF%BC%88%E6%A0%87%E9%A2%98%EF%BC%89']
+  , [ '中间有空格 和.符号.的(标题)', null, '#%E4%B8%AD%E9%97%B4%E6%9C%89%E7%A9%BA%E6%A0%BC-%E5%92%8C%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%A0%87%E9%A2%98']
+  , [ '存在，【中文】；《标点》、符号！的标题？', null, '#%E5%AD%98%E5%9C%A8%E4%B8%AD%E6%96%87%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%A0%87%E9%A2%98']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
