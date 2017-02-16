@@ -1,5 +1,7 @@
 'use strict';
 
+var emojiRegex = require('emoji-regex');
+
 // https://github.com/joyent/node/blob/192192a09e2d2e0d6bdd0934f602d2dbbf10ed06/tools/doc/html.js#L172-L183
 function getNodejsId(text, repetition) {
   text = text.replace(/[^a-z0-9]+/g, '_');
@@ -34,6 +36,9 @@ function getGithubId(text, repetition) {
   if (repetition) {
     text += '-' + repetition;
   }
+
+  // Strip emojis
+  text = text.replace(emojiRegex(), '')
 
   return text;
 }
