@@ -43,6 +43,9 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'module-specific-variables-using-jsdoc-@module', null, '#module-specific-variables-using-jsdoc-module']
   , [ 'Jack & Jill', null, '#jack--jill']
   , [ 'replace – or —', null, '#replace--or-']
+  , [ 'Modules 📦', null, '#modules-']
+  , [ 'Modu📦les', null, '#modules']
+  , [ 'Mo📦du📦les', null, '#modules']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
