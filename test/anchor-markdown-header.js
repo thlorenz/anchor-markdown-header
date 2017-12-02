@@ -142,6 +142,14 @@ test('\ngenerating anchor for non-english header', function (t) {
   , [ '标题', 1, '#%E6%A0%87%E9%A2%98-1']
   , [ '中间有空格 和.符号.的(标题)', null, '#%E4%B8%AD%E9%97%B4%E6%9C%89%E7%A9%BA%E6%A0%BC-%E5%92%8C%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%A0%87%E9%A2%98']
   , [ '存在，【中文】；《标点》、符号！的标题？', null, '#%E5%AD%98%E5%9C%A8%E4%B8%AD%E6%96%87%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7%E7%9A%84%E6%A0%87%E9%A2%98']
+  , [ 'Заголовок', null, '#%D0%97%D0%B0%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%BE%D0%BA']
+  , [ 'NECHŤ JIŽ HŘÍŠNÉ SAXOFONY ĎÁBLŮ ROZZVUČÍ SÍŇ ÚDĚSNÝMI TÓNY WALTZU, TANGA A QUICKSTEPU.', null, '#nech%C5%A4-ji%C5%BD-h%C5%98%C3%8D%C5%A0n%C3%89-saxofony-%C4%8E%C3%81bl%C5%AE-rozzvu%C4%8C%C3%8D-s%C3%8D%C5%87-%C3%9Ad%C4%9Asn%C3%9Dmi-t%C3%93ny-waltzu-tanga-a-quickstepu']
+  , [ 'PÓJDŹŻE, KIŃ TĘ CHMURNOŚĆ W GŁĄB FLASZY!', null, '#p%C3%93jd%C5%B9%C5%BBe-ki%C5%83-t%C4%98-chmurno%C5%9A%C4%86-w-g%C5%81%C4%84b-flaszy']
+  , [ 'FLYGANDE BÄCKASINER SÖKA STRAX HWILA PÅ MJUKA TUVOR.', null, '#flygande-b%C3%84ckasiner-s%C3%96ka-strax-hwila-p%C3%85-mjuka-tuvor']
+  , [ 'LYNX C.Q. VOS PRIKT BH: DAG ZWEMJUF! VICTOR JAGT ZWÖLF BOXKÄMPFER QUER ÜBER DEN GROßEN SYLTER DEICH.', null, '#lynx-cq-vos-prikt-bh-dag-zwemjuf-victor-jagt-zw%C3%96lf-boxk%C3%84mpfer-quer-%C3%9Cber-den-gro%C3%9Fen-sylter-deich']
+  , [ 'EL VELOZ MURCIÉLAGO HINDÚ COMÍA FELIZ CARDILLO Y KIWI. LA CIGÜEÑA TOCABA EL SAXOFÓN DETRÁS DEL PALENQUE DE PAJA.', null, '#el-veloz-murci%C3%89lago-hind%C3%9A-com%C3%8Da-feliz-cardillo-y-kiwi-la-cig%C3%9Ce%C3%91a-tocaba-el-saxof%C3%93n-detr%C3%81s-del-palenque-de-paja']
+  , [ 'DO BẠCH KIM RẤT QUÝ NÊN SẼ DÙNG ĐỂ LẮP VÔ XƯƠNG', null, '#do-b%E1%BA%A0ch-kim-r%E1%BA%A4t-qu%C3%9D-n%C3%8An-s%E1%BA%BC-d%C3%99ng-%C4%90%E1%BB%82-l%E1%BA%AEp-v%C3%94-x%C6%AF%C6%A0ng']
+  , [ 'ΞΕΣΚΕΠΆΖΩ ΤΗΝ ΨΥΧΟΦΘΌΡΑ ΒΔΕΛΥΓΜΊΑ', null, '#%CE%9E%CE%95%CE%A3%CE%9A%CE%95%CE%A0%CE%86%CE%96%CE%A9-%CE%A4%CE%97%CE%9D-%CE%A8%CE%A5%CE%A7%CE%9F%CE%A6%CE%98%CE%8C%CE%A1%CE%91-%CE%92%CE%94%CE%95%CE%9B%CE%A5%CE%93%CE%9C%CE%8A%CE%91']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
