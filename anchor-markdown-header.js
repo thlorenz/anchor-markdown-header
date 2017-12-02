@@ -136,7 +136,19 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
       throw new Error('Unknown mode: ' + mode);
   }
 
-  var href = replace(header.trim().toLowerCase(), repetition);
+  function asciiOnlyToLowerCase(input) {
+    var result = '';
+    for (var i = 0; i < input.length; ++i) {
+      if (input[i] >= 'A' && input[i] <= 'Z') {
+        result += input[i].toLowerCase();
+      } else {
+        result += input[i];
+      }
+    }
+    return result;
+  }
+
+  var href = replace(asciiOnlyToLowerCase(header.trim()), repetition);
 
   return '[' + header + '](#' + encodeURI(href) + ')';
 };
