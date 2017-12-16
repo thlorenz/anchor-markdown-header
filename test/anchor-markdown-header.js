@@ -30,7 +30,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'remove {curly braces}{}', null, '#remove-curly-braces'],
   , [ 'remove ++++pluses+', null, '#remove-pluses']
   , [ 'remove escape codes %3Cstatic%E3 coreappupevents %E2%86%92 object', null, '#remove-escape-codes-static-coreappupevents--object']
-  , [ 'remove lt and gt <static>mycall', null, '#remove-lt-and-gt-staticmycall']
+  , [ 'remove lt and gt <static>mycall', null, '#remove-lt-and-gt-mycall']
   , [ 'remove exclamation point!', null, '#remove-exclamation-point']
   , [ 'remove = sign', null, '#remove--sign']
   , [ '`history [pgn | alg]`', null, '#history-pgn--alg']
