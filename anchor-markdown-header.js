@@ -112,10 +112,19 @@ function getGitlabId(text, repetition) {
 module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleName) {
   mode = mode || 'github.com';
   var replace;
+  var customEncodeURI = encodeURI;
 
   switch(mode) {
     case 'github.com':
       replace = getGithubId;
+      customEncodeURI = function(uri) {
+        var newURI = encodeURI(uri);
+
+        // encodeURI replaces the zero width joiner character
+        // (used to generate emoji sequences, e.g.Female Construction Worker 👷🏼‍♀️)
+        // github doesn't URL encode them, so we replace them after url encoding to preserve the zwj character.
+        return newURI.replace(/%E2%80%8D/g, '\u200D');
+      };
       break;
     case 'bitbucket.org':
       replace = getBitbucketId;
@@ -150,5 +159,5 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
 
   var href = replace(asciiOnlyToLowerCase(header.trim()), repetition);
 
-  return '[' + header + '](#' + encodeURI(href) + ')';
+  return '[' + header + '](#' + customEncodeURI(href) + ')';
 };

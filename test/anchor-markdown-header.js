@@ -46,6 +46,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'Modules 📦', null, '#modules-']
   , [ 'Modu📦les', null, '#modules']
   , [ 'Mo📦du📦les', null, '#modules']
+  , [ '👷🏼‍♀️ Maintenance', null, '#\u200D-maintenance']
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
