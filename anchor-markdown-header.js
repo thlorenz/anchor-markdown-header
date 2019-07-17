@@ -43,6 +43,20 @@ function getGithubId(text, repetition) {
   return text;
 }
 
+/**
+ * Encodes a string to contain URI safe characters, compatible with Github.
+ *
+ * @param {String} uri The string to be encoded
+ */
+function encodeGithubURI(uri) {
+  var newURI = encodeURI(uri);
+
+  // encodeURI replaces the zero width joiner character
+  // (used to generate emoji sequences, e.g.Female Construction Worker 👷🏼‍♀️)
+  // github doesn't URL encode them, so we replace them after url encoding to preserve the zwj character.
+  return newURI.replace(/%E2%80%8D/g, '\u200D');
+}
+
 function getBitbucketId(text, repetition) {
   text = 'markdown-header-' + basicGithubId(text);
 
@@ -117,14 +131,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
   switch(mode) {
     case 'github.com':
       replace = getGithubId;
-      customEncodeURI = function(uri) {
-        var newURI = encodeURI(uri);
-
-        // encodeURI replaces the zero width joiner character
-        // (used to generate emoji sequences, e.g.Female Construction Worker 👷🏼‍♀️)
-        // github doesn't URL encode them, so we replace them after url encoding to preserve the zwj character.
-        return newURI.replace(/%E2%80%8D/g, '\u200D');
-      };
+      customEncodeURI = encodeGithubURI;
       break;
     case 'bitbucket.org':
       replace = getBitbucketId;
