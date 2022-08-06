@@ -23,9 +23,9 @@
   "readmeFilename": "README.md",
   "gitHead": "dcde154040d17d321664a7efc38e8531330335f9",
   "devDependencies": {
-    "tap": "~0.4.8"
+    "tap": "~16.3.0"
   },
   "dependencies": {
-    "emoji-regex": "~6.1.0"
+    "emoji-regex": "~10.1.0"
   }
 }
