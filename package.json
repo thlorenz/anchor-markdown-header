@@ -22,6 +22,12 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "dcde154040d17d321664a7efc38e8531330335f9",
+  "tap": {
+    "statements": 96,
+    "lines": 98,
+    "functions": 100,
+    "branches": 90
+  },
   "devDependencies": {
     "tap": "~0.4.8"
   },
