@@ -46,7 +46,15 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'Modules 📦', null, '#modules-']
   , [ 'Modu📦les', null, '#modules']
   , [ 'Mo📦du📦les', null, '#modules']
-  , [ '👷🏼‍♀️ Maintenance', null, '#\u200D-maintenance']
+  , [ '👷🏼‍♀️ Maintenance', null, '#-maintenance']
+  , [ '🔴 or 🟡 - At Risk', null, '#-or----at-risk' ]
+  , [ '🔄 Still Need Updates', null, '#-still-need-updates']
+  , [ '⏱ Past-Due Items', null, '#-past-due-items']
+  , [ '➡ ETA Changes This Week', null, '#-eta-changes-this-week']
+  , [ '🚀 Shipped this week', null, '#-shipped-this-week']
+  , [ '🎟 Support Tickets', null, '#-support-tickets']
+  , [ '🔬 Team-by-team Breakdown: Hello', null, '#-team-by-team-breakdown-hello']
+
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
