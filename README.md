@@ -1,4 +1,4 @@
-# anchor-markdown-header [![build status](https://secure.travis-ci.org/thlorenz/anchor-markdown-header.png)](http://travis-ci.org/thlorenz/anchor-markdown-header)
+# anchor-markdown-header [![Node.js CI](https://github.com/thlorenz/anchor-markdown-header/actions/workflows/node.js.yml/badge.svg)](https://github.com/thlorenz/anchor-markdown-header/actions/workflows/node.js.yml)
 
 Generates an anchor for a markdown header.
 
