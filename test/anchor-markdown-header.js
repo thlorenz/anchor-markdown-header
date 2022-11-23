@@ -54,6 +54,13 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ '🚀 Shipped this week', null, '#-shipped-this-week']
   , [ '🎟 Support Tickets', null, '#-support-tickets']
   , [ '🔬 Team-by-team Breakdown: Hello', null, '#-team-by-team-breakdown-hello']
+  , [ '🔬 Team-by-team Breakdown: Hello', null, '#-team-by-team-breakdown-hello']
+  , [ 'foo _bar_', null, '#foo-bar']
+  , [ 'foo **baz**', null, '#foo-baz']
+  , [ 'foo ~baf~', null, '#foo-baf']
+  , [ 'bar_foo', null, '#bar_foo']
+  , [ 'baz_foo_', null, '#baz_foo_']
+  , [ '_foo_bax_', null, '#foo_bax']
 
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
