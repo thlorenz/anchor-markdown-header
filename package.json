@@ -1,6 +1,6 @@
 {
   "name": "anchor-markdown-header",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Generates an anchor for a markdown header.",
   "main": "anchor-markdown-header.js",
   "scripts": {
