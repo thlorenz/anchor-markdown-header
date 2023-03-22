@@ -3,6 +3,7 @@
   "version": "0.7.0",
   "description": "Generates an anchor for a markdown header.",
   "main": "anchor-markdown-header.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "tap test/*.js"
   },
