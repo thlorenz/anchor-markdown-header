@@ -76,6 +76,8 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ 'bar_foo', null, '#bar_foo']
   , [ 'baz_foo_', null, '#baz_foo_']
   , [ '_foo_bax_', null, '#foo_bax']
+  , [ '10% off', null, '#10-off']
+  , [ '1/2 affected', null, '#12-affected']
 
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
