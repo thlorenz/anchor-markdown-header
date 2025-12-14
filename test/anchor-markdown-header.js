@@ -5,15 +5,15 @@ var test   =  require('tap').test
   , format =  require('util').format
   , anchor =  require('..')
 
-function checkResult(t, mode, moduleName, header, repetition, href) {
+function checkResult(t, mode, header, repetition, href) {
   var expectedAnchor = format('[%s](%s)', header, href)
   var resultText = 'generates ' + expectedAnchor + ' for header ' + header + ' and repetition = ' + repetition;
-  t.equal(anchor(header, mode, repetition, moduleName), expectedAnchor, resultText);
+  t.equal(anchor(header, mode, repetition), expectedAnchor, resultText);
 }
 
 test('\ngenerating anchor in github mode', function (t) {
 
-  var check = checkResult.bind(null, t, undefined, undefined);
+  var check = checkResult.bind(null, t, undefined);
 
   [ [ 'intro', null,  '#intro' ]
   , [ 'intro', 0,  '#intro' ]
@@ -83,7 +83,7 @@ test('\ngenerating anchor in github mode', function (t) {
 
 test('\ngenerating anchor in ghost mode', function (t) {
 
-  var check = checkResult.bind(null, t, 'ghost.org', undefined);
+  var check = checkResult.bind(null, t, 'ghost.org');
 
   [ [ 'intro', null,  '#intro' ]
   , [ 'intro', 0,  '#intro' ]
@@ -109,32 +109,32 @@ test('\ngenerating anchor in ghost mode', function (t) {
 
 test('\ngenerating anchor in nodejs.org mode for fs module', function (t) {
 
-  var check = checkResult.bind(null, t, 'nodejs.org', 'fs');
+  var check = checkResult.bind(null, t, 'nodejs.org');
 
-  [ [ 'fs.rename(oldPath, newPath, [callback])', null, '#fs_fs_rename_oldpath_newpath_callback' ]
-  , [ 'fs.rename(oldPath, newPath, [callback])', 0, '#fs_fs_rename_oldpath_newpath_callback' ]
-  , [ 'fs.rename(oldPath, newPath, [callback])', 1, '#fs_fs_rename_oldpath_newpath_callback_1' ]
-  , [ 'fs.truncate(fd, len, [callback])', null, '#fs_fs_truncate_fd_len_callback' ]
-  , [ 'fs.symlink(srcpath, dstpath, [type], [callback])', null, '#fs_fs_symlink_srcpath_dstpath_type_callback' ]
-  , [ "fs.appendFile(filename, data, encoding='utf8', [callback])", null, '#fs_fs_appendfile_filename_data_encoding_utf8_callback' ]
-  , [ 'Class: fs.FSWatcher', null, '#fs_class_fs_fswatcher' ]
+  [ [ 'fs.rename(oldPath, newPath, [callback])', null, '#fs_rename_oldpath_newpath_callback' ]
+  , [ 'fs.rename(oldPath, newPath, [callback])', 0, '#fs_rename_oldpath_newpath_callback' ]
+  , [ 'fs.rename(oldPath, newPath, [callback])', 1, '#fs_rename_oldpath_newpath_callback_1' ]
+  , [ 'fs.truncate(fd, len, [callback])', null, '#fs_truncate_fd_len_callback' ]
+  , [ 'fs.symlink(srcpath, dstpath, [type], [callback])', null, '#fs_symlink_srcpath_dstpath_type_callback' ]
+  , [ "fs.appendFile(filename, data, encoding='utf8', [callback])", null, '#fs_appendfile_filename_data_encoding_utf8_callback' ]
+  , [ 'Class: fs.FSWatcher', null, '#class_fs_fswatcher' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
 
 test('\ngenerating anchor in nodejs.org mode for crypto module', function (t) {
 
-  var check = checkResult.bind(null, t, 'nodejs.org', 'crypto');
+  var check = checkResult.bind(null, t, 'nodejs.org');
 
-  [ [ 'cipher.update(data, [input_encoding], [output_encoding])', null, '#crypto_cipher_update_data_input_encoding_output_encoding' ]
-  , [ 'crypto.pbkdf2(password, salt, iterations, keylen, callback)', null, '#crypto_crypto_pbkdf2_password_salt_iterations_keylen_callback' ]
+  [ [ 'cipher.update(data, [input_encoding], [output_encoding])', null, '#cipher_update_data_input_encoding_output_encoding' ]
+  , [ 'crypto.pbkdf2(password, salt, iterations, keylen, callback)', null, '#crypto_pbkdf2_password_salt_iterations_keylen_callback' ]
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
 
 test('\ngenerating anchor in bitbucket mode', function (t) {
 
-  var check = checkResult.bind(null, t, 'bitbucket.org', undefined);
+  var check = checkResult.bind(null, t, 'bitbucket.org');
 
   [ [ 'intro', null, '#markdown-header-intro' ]
   , [ 'intro', 0, '#markdown-header-intro' ]
@@ -152,7 +152,7 @@ test('\ngenerating anchor in bitbucket mode', function (t) {
 
 test('\ngenerating anchor in gitlab mode', function (t) {
 
-  var check = checkResult.bind(null, t, 'gitlab.com', undefined);
+  var check = checkResult.bind(null, t, 'gitlab.com');
 
   [ [ 'intro', null, '#intro']
   , [ 'intro', 0, '#intro']
@@ -166,7 +166,7 @@ test('\ngenerating anchor in gitlab mode', function (t) {
 
 test('\ngenerating anchor for non-english header', function (t) {
 
-  var check = checkResult.bind(null, t, undefined, undefined);
+  var check = checkResult.bind(null, t, undefined);
 
   [ [ '标题', null, '#%E6%A0%87%E9%A2%98']
   , [ '标题', 0, '#%E6%A0%87%E9%A2%98' ]
