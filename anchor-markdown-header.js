@@ -26,6 +26,8 @@ function basicGithubId(text) {
     .replace(/[\/\\?!%:\[\]`.,()*"';{}+=<>~\$|#@&–—]/g,'')
     // CJK punctuations that are removed
     .replace(/[。？！，、；：“”【】（）〔〕［］﹃﹄“ ”‘’﹁﹂—…－～《》〈〉「」]/g, '')
+    // latin-1 supplement chars that are removed
+    .replace(/[¡¢£¤¥¦§¨©«¬®¯±²³´¶·¸¹º»¼½¾¿]/g, '')
     ;
 
 }
@@ -91,6 +93,7 @@ function getGitlabId(text, repetition) {
     .replace(/\s+/g, '-')              // All spaces are converted to hyphens
     .replace(/[\/?!:\[\]`.,()*"';{}+=<>~\$|#@]/g,'') // All non-word text (e.g., punctuation, HTML) is removed
     .replace(/[。？！，、；：“”【】（）〔〕［］﹃﹄“ ”‘’﹁﹂—…－～《》〈〉「」]/g, '') // remove CJK punctuations
+    .replace(/[¹²³]/g, '') // remove snall subset of latin-1 supplement chars
     .replace(/[-]+/g,'-')              // duplicated hyphen
     .replace(/^-/,'')                  // ltrim hyphen
     .replace(/-$/,'');                 // rtrim hyphen
