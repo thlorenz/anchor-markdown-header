@@ -117,6 +117,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
   mode = mode || 'github.com';
   var replace;
   var customEncodeURI = encodeURI;
+  var customCasing = asciiOnlyToLowerCase;
 
   switch(mode) {
     case 'github.com':
@@ -129,6 +130,10 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
         // github doesn't URL encode them, so we replace them after url encoding to preserve the zwj character.
         return newURI.replace(/%E2%80%8D/g, '\u200D');
       };
+      customCasing = function(input) {
+        // GitHub prefers to lowercase all characters, not just ASCII ones. Previously this was not the case.
+        return input.toLowerCase();
+      }
       break;
     case 'bitbucket.org':
       replace = getBitbucketId;
@@ -161,7 +166,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
     return result;
   }
 
-  var href = replace(asciiOnlyToLowerCase(header.trim()), repetition);
+  var href = replace(customCasing(header.trim()), repetition);
 
   return '[' + header + '](#' + customEncodeURI(href) + ')';
 };
