@@ -113,10 +113,9 @@ function getGitlabId(text, repetition) {
  * @param header      {String} The header to be anchored.
  * @param mode        {String} The anchor mode (github.com|nodejs.org|bitbucket.org|ghost.org|gitlab.com).
  * @param repetition  {Number} The nth occurrence of this header text, starting with 0. Not required for the 0th instance.
- * @param moduleName  {String} The name of the module of the given header (required only for 'nodejs.org' mode).
  * @return            {String} The header anchor that is compatible with the given mode.
  */
-module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleName) {
+module.exports = function anchorMarkdownHeader(header, mode, repetition) {
   mode = mode || 'github.com';
   var replace;
   var customEncodeURI = encodeURI;
@@ -145,10 +144,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
       replace = getGitlabId;
       break;
     case 'nodejs.org':
-      if (!moduleName) throw new Error('Need module name to generate proper anchor for ' + mode);
-      replace = function (hd, repetition) {
-          return getNodejsId(moduleName + '.' + hd, repetition);
-      };
+      replace = getNodejsId;
       break;
     case 'ghost.org':
       replace = getGhostId;
