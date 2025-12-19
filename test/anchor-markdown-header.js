@@ -90,7 +90,7 @@ test('\ngenerating anchor in ghost mode', function (t) {
 
   [ [ 'intro', null,  '#intro' ]
   , [ 'intro', 0,  '#intro' ]
-  , [ 'repetitions not supported', 1,  '#repetitionsnotsupported' ]
+  , [ 'intro', 1,  '#intro-1' ]
   , [ 'mineflayer.windows.Window (base class)', null,  '#mineflayerwindowswindowbaseclass']
   , [ 'window.findInventoryItem(itemType, metadata, [notFull])', null, '#windowfindinventoryitemitemtypemetadatanotfull' ]
   , [ 'furnace "updateSlot" (oldItem, newItem)', null, '#furnaceupdateslotolditemnewitem' ]

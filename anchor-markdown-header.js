@@ -76,10 +76,13 @@ function basicGhostId(text) {
     ;
 }
 
-function getGhostId(text) {
+function getGhostId(text, repetition) {
   text = basicGhostId(text);
 
-  // Repetitions not supported
+  // If no repetition, or if the repetition is 0 then ignore. Otherwise append '-' and the number.
+  if (repetition) {
+    text += '-' + repetition;
+  }
 
   return text;
 }
