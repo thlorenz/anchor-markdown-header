@@ -23,10 +23,10 @@
   "readmeFilename": "README.md",
   "gitHead": "dcde154040d17d321664a7efc38e8531330335f9",
   "devDependencies": {
-    "tap": "~16.3.0"
+    "tap": "~16.3.8"
   },
   "dependencies": {
-    "emoji-regex": "~10.1.0",
-    "remove-markdown": "^0.5.0"
+    "emoji-regex": "~10.6.0",
+    "remove-markdown": "^0.6.2"
   }
 }
