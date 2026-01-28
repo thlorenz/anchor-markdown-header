@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write  # Required for OIDC
   contents: write
+  issues: write # Required for raising isdues
 
 jobs:
   build:
@@ -30,8 +31,20 @@ jobs:
 
       - run: npm pack
 
-      - run: npm publish
+      - name: NPM Publish
+        id: publish
+        run: npm publish
 
+      - name: Create issue on npm publish failure
+        if: ${{ steps.publish.outcome == 'failure' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "NPM Publish step failed for release ${GITHUB_REF_NAME}" \
+            --body "The NPM publish step failed for release: ${GITHUB_REF_NAME}. The npm package will need to be manually uploaded to NPM.
+            --assignee AndrewSouthpaw
+        
       - name: Release
         if: ${{ always() }}
         uses: softprops/action-gh-release@v2
