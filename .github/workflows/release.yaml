@@ -8,7 +8,7 @@ on:
 permissions:
   id-token: write  # Required for OIDC
   contents: write
-  issues: write # Required for raising isdues
+  issues: write # Required for raising issues
 
 jobs:
   build:
