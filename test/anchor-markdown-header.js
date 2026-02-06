@@ -78,7 +78,7 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ '_foo_bax_', null, '#foo_bax']
   , [ '10% off', null, '#10-off']
   , [ '1/2 affected', null, '#12-affected']
-  , [ '¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿Latin 1', null, '#%C2%AA%C2%B0%C2%B5latin-1']
+  , [ '¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿Latin 1', null, '#%C2%AA%C2%B5%C2%BAlatin-1']
 
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
