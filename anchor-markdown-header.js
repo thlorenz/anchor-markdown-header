@@ -27,7 +27,7 @@ function basicGithubId(text) {
     // CJK punctuations that are removed
     .replace(/[。？！，、；：“”【】（）〔〕［］﹃﹄“ ”‘’﹁﹂—…－～《》〈〉「」]/g, '')
     // latin-1 supplement chars that are removed
-    .replace(/[¡¢£¤¥¦§¨©«¬®¯±²³´¶·¸¹º»¼½¾¿]/g, '')
+    .replace(/[¡¢£¤¥¦§¨©«¬®¯°±²³´¶·¸¹»¼½¾¿]/g, '')
     ;
 
 }
