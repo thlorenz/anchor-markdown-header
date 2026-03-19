@@ -116,9 +116,10 @@ function getGitlabId(text, repetition) {
  * @param header      {String} The header to be anchored.
  * @param mode        {String} The anchor mode (github.com|nodejs.org|bitbucket.org|ghost.org|gitlab.com).
  * @param repetition  {Number} The nth occurrence of this header text, starting with 0. Not required for the 0th instance.
+ * @param href        {String} The href to be used in the anchor.
  * @return            {String} The header anchor that is compatible with the given mode.
  */
-module.exports = function anchorMarkdownHeader(header, mode, repetition) {
+module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
   mode = mode || 'github.com';
   var replace;
   var customEncodeURI = encodeURI;
@@ -152,6 +153,11 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition) {
     case 'ghost.org':
       replace = getGhostId;
       break;
+    case 'custom':
+      if(href === undefined){
+        throw new Error('Missing href');
+      }
+      break;
     default:
       throw new Error('Unknown mode: ' + mode);
   }
@@ -168,7 +174,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition) {
     return result;
   }
 
-  var href = replace(customCasing(header.trim()), repetition);
+  href = href || replace(customCasing(header.trim()), repetition);
 
   return '[' + header + '](#' + customEncodeURI(href) + ')';
 };

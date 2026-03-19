@@ -20,7 +20,7 @@ anchor('"playerJoined" (player)') === anchor('"playerJoined" (player)', 'github.
 
 ## API
 
-`anchor(header[, mode] [, repetition)`
+`anchor(header[, mode] [, repetition] [, href])`
 
 ```js
 /**
@@ -29,6 +29,7 @@ anchor('"playerJoined" (player)') === anchor('"playerJoined" (player)', 'github.
  * @param header      {String} The header to be anchored.
  * @param mode        {String} The anchor mode (github.com|nodejs.org|bitbucket.org|ghost.org|gitlab.com).
  * @param repetition  {Number} The nth occurrence of this header text, starting with 0. Not required for the 0th instance.
+ * @param href        {String} The href to be used in the anchor.
  * @return            {String} The header anchor that is compatible with the given mode.
  */
 ```

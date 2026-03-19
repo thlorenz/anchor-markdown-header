@@ -187,3 +187,15 @@ test('\ngenerating anchor for non-english header', function (t) {
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
+
+test('\ngenerating anchor in custom mode', function (t) {
+  var actual = anchor('custom', 'Heading Text', 0, 'head');
+  var expectedAnchor = '[Heading Text](#head)';
+  t.equal(actual, expectedAnchor);
+})
+
+test('\ngenerating anchor in github mode with href', function (t) {
+  var actual = anchor('github', 'Heading Text', 1, 'head');
+  var expectedAnchor = '[Heading Text](#head)';
+  t.equal(actual, expectedAnchor);
+})
