@@ -189,13 +189,23 @@ test('\ngenerating anchor for non-english header', function (t) {
 })
 
 test('\ngenerating anchor in custom mode', function (t) {
-  var actual = anchor('custom', 'Heading Text', 0, 'head');
+  var actual = anchor('Heading Text', 'custom', 0, 'head');
   var expectedAnchor = '[Heading Text](#head)';
   t.equal(actual, expectedAnchor);
+  t.end();
 })
 
 test('\ngenerating anchor in github mode with href', function (t) {
-  var actual = anchor('github', 'Heading Text', 1, 'head');
+  var actual = anchor('Heading Text', 'github.com', 1, 'head');
   var expectedAnchor = '[Heading Text](#head)';
   t.equal(actual, expectedAnchor);
+  t.end();
+})
+
+test('\nmissing input for custom mode throws', function (t) {
+  t.throws(
+    () => anchor('Heading Text', 'github.com', 0),
+    { message: 'Missing href' }
+  );
+  t.end();
 })
