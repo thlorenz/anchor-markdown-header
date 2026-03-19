@@ -204,8 +204,16 @@ test('\ngenerating anchor in github mode with href', function (t) {
 
 test('\nmissing input for custom mode throws', function (t) {
   t.throws(
-    () => anchor('Heading Text', 'github.com', 0),
+    () => anchor('Heading Text', 'custom', 0),
     { message: 'Missing href' }
+  );
+  t.end();
+})
+
+test('\ninvalid input for mode throws', function (t) {
+  t.throws(
+    () => anchor('Heading Text', 'random'),
+    { message: 'Unknown mode: random' }
   );
   t.end();
 })
