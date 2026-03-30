@@ -187,3 +187,33 @@ test('\ngenerating anchor for non-english header', function (t) {
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
+
+test('\ngenerating anchor in custom mode', function (t) {
+  var actual = anchor('Heading Text', 'custom', 0, 'head');
+  var expectedAnchor = '[Heading Text](#head)';
+  t.equal(actual, expectedAnchor);
+  t.end();
+})
+
+test('\ngenerating anchor in github mode with href', function (t) {
+  var actual = anchor('Heading Text', 'github.com', 1, 'head');
+  var expectedAnchor = '[Heading Text](#head)';
+  t.equal(actual, expectedAnchor);
+  t.end();
+})
+
+test('\nmissing input for custom mode throws', function (t) {
+  t.throws(
+    () => anchor('Heading Text', 'custom', 0),
+    { message: 'Missing href' }
+  );
+  t.end();
+})
+
+test('\ninvalid input for mode throws', function (t) {
+  t.throws(
+    () => anchor('Heading Text', 'random'),
+    { message: 'Unknown mode: random' }
+  );
+  t.end();
+})
