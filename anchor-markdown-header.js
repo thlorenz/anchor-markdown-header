@@ -135,7 +135,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
   if (symbol) {
     var parts = header.split(symbol);
     header = parts[0].trim();
-    href = parts[1].slice(-2);
+    href = parts[1].slice(0, -2);
   }
 
   switch(mode) {
