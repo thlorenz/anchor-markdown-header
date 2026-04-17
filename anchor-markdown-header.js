@@ -126,15 +126,15 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
   var customCasing = asciiOnlyToLowerCase;
   var symbol;
 
-  if (header.inclues('{#')) {
+  if (header.includes('{#')) {
     symbol = '{#';
   }
-  else if (header.inclues('{:')) {
+  else if (header.includes('{:')) {
     symbol = '{:';
   }
   if (symbol) {
     var parts = header.split(symbol);
-    header = parts[0];
+    header = parts[0].trim();
     href = parts[1].slice(-2);
   }
 
