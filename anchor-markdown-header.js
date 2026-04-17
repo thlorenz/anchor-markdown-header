@@ -124,6 +124,19 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
   var replace;
   var customEncodeURI = encodeURI;
   var customCasing = asciiOnlyToLowerCase;
+  var symbol;
+
+  if (header.inclues('{#')) {
+    symbol = '{#';
+  }
+  else if (header.inclues('{:')) {
+    symbol = '{:';
+  }
+  if (symbol) {
+    var parts = header.split(symbol);
+    header = parts[0];
+    href = parts[1].slice(-2);
+  }
 
   switch(mode) {
     case 'github.com':
