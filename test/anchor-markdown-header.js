@@ -195,6 +195,20 @@ test('\ngenerating anchor in custom mode', function (t) {
   t.end();
 })
 
+test('\ngenerating anchor using # header id', function (t) {
+  var actual = anchor('Heading Text {#head#}');
+  var expectedAnchor = '[Heading Text](#head)';
+  t.equal(actual, expectedAnchor);
+  t.end();
+})
+
+test('\ngenerating anchor using : header id', function (t) {
+  var actual = anchor('Heading Text {:head:}');
+  var expectedAnchor = '[Heading Text](#head)';
+  t.equal(actual, expectedAnchor);
+  t.end();
+})
+
 test('\ngenerating anchor in github mode with href', function (t) {
   var actual = anchor('Heading Text', 'github.com', 1, 'head');
   var expectedAnchor = '[Heading Text](#head)';
