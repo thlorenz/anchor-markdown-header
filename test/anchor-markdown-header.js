@@ -195,23 +195,14 @@ test('\ngenerating anchor in custom mode', function (t) {
   t.end();
 })
 
-test('\ngenerating anchor using # header id', function (t) {
-  var actual = anchor('Heading Text {#head#}');
-  var expectedAnchor = '[Heading Text](#head)';
-  t.equal(actual, expectedAnchor);
-  t.end();
-})
-
-test('\ngenerating anchor using : header id', function (t) {
-  var actual = anchor('Heading Text {:head:}');
-  var expectedAnchor = '[Heading Text](#head)';
-  t.equal(actual, expectedAnchor);
-  t.end();
-})
-
 test('\nstandard {#id} syntax (PHP Markdown Extra / Pandoc / kramdown)', function (t) {
-  // Real-world Markdown uses a single closing brace: {#head}, not {#head#}.
   var actual = anchor('Heading Text {#head}');
+  t.equal(actual, '[Heading Text](#head)');
+  t.end();
+})
+
+test('\nkramdown {:#id} syntax', function (t) {
+  var actual = anchor('Heading Text {:#head}');
   t.equal(actual, '[Heading Text](#head)');
   t.end();
 })
