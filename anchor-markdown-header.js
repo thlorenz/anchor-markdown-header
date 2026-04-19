@@ -125,6 +125,14 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
   var customEncodeURI = encodeURI;
   var customCasing = asciiOnlyToLowerCase;
 
+  // Extended Markdown heading IDs: `Header text {#id}` or kramdown's `{:#id}` at end of line.
+  // See https://www.markdownlang.com/extended/heading-ids.html
+  var idMatch = header.match(/^(.*?)[ \t]*\{:?#([^\s}]+)\}[ \t]*$/);
+  if (idMatch) {
+    header = idMatch[1];
+    href = idMatch[2];
+  }
+
   switch(mode) {
     case 'github.com':
       replace = getGithubId;

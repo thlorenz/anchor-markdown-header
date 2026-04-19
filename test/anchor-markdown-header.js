@@ -195,6 +195,37 @@ test('\ngenerating anchor in custom mode', function (t) {
   t.end();
 })
 
+test('\nstandard {#id} syntax (PHP Markdown Extra / Pandoc / kramdown)', function (t) {
+  var actual = anchor('Heading Text {#head}');
+  t.equal(actual, '[Heading Text](#head)');
+  t.end();
+})
+
+test('\nkramdown {:#id} syntax', function (t) {
+  var actual = anchor('Heading Text {:#head}');
+  t.equal(actual, '[Heading Text](#head)');
+  t.end();
+})
+
+test('\nunclosed {# should not be treated as a header id', function (t) {
+  // No closing } — the braces are literal text. Expect a normal slug.
+  var actual = anchor('Heading {#foo');
+  t.equal(actual, '[Heading {#foo](#heading-foo)');
+  t.end();
+})
+
+test('\n{#id} with trailing text on the line', function (t) {
+  var actual = anchor('Heading {#foo} trailing');
+  t.equal(actual, '[Heading {#foo} trailing](#heading-foo-trailing)');
+  t.end();
+})
+
+test('\nliteral {# mid-text, no closing brace, should not be consumed', function (t) {
+  var actual = anchor('Set of {#hashes} in prose');
+  t.equal(actual, '[Set of {#hashes} in prose](#set-of-hashes-in-prose)');
+  t.end();
+})
+
 test('\ngenerating anchor in github mode with href', function (t) {
   var actual = anchor('Heading Text', 'github.com', 1, 'head');
   var expectedAnchor = '[Heading Text](#head)';
