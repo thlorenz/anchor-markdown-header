@@ -124,18 +124,13 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
   var replace;
   var customEncodeURI = encodeURI;
   var customCasing = asciiOnlyToLowerCase;
-  var symbol;
 
-  if (header.includes('{#')) {
-    symbol = '{#';
-  }
-  else if (header.includes('{:')) {
-    symbol = '{:';
-  }
-  if (symbol) {
-    var parts = header.split(symbol);
-    header = parts[0].trim();
-    href = parts[1].slice(0, -2);
+  // Extended Markdown heading IDs: `Header text {#id}` or kramdown's `{:#id}` at end of line.
+  // See https://www.markdownlang.com/extended/heading-ids.html
+  var idMatch = header.match(/^(.*?)[ \t]*\{:?#([^\s}]+)\}[ \t]*$/);
+  if (idMatch) {
+    header = idMatch[1];
+    href = idMatch[2];
   }
 
   switch(mode) {
