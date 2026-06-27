@@ -27,5 +27,8 @@
   "dependencies": {
     "emoji-regex": "~10.6.0",
     "remove-markdown": "^0.6.2"
+  },
+  "resolutions": {
+    "lru-cache": "11.2.7"
   }
 }
