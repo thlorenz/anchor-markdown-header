@@ -119,19 +119,11 @@ function getGitlabId(text, repetition) {
  * @param href        {String} The href to be used in the anchor.
  * @return            {String} The header anchor that is compatible with the given mode.
  */
-module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
+module.exports = function anchorMarkdownHeader(header, mode, repetition) {
   mode = mode || 'github.com';
   var replace;
   var customEncodeURI = encodeURI;
   var customCasing = asciiOnlyToLowerCase;
-
-  // Extended Markdown heading IDs: `Header text {#id}` or kramdown's `{:#id}` at end of line.
-  // See https://www.markdownlang.com/extended/heading-ids.html
-  var idMatch = header.match(/^(.*?)[ \t]*\{:?#([^\s}]+)\}[ \t]*$/);
-  if (idMatch) {
-    header = idMatch[1];
-    href = idMatch[2];
-  }
 
   switch(mode) {
     case 'github.com':
@@ -162,9 +154,6 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
       replace = getGhostId;
       break;
     case 'custom':
-      if(href === undefined){
-        throw new Error('Missing href');
-      }
       break;
     default:
       throw new Error('Unknown mode: ' + mode);
@@ -182,7 +171,7 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, href) {
     return result;
   }
 
-  href = href || replace(customCasing(header.trim()), repetition);
+  var href = replace(customCasing(header.trim()), repetition);
 
-  return '[' + header + '](#' + customEncodeURI(href) + ')';
+  return customEncodeURI(href);
 };
