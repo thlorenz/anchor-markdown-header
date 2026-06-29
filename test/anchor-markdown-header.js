@@ -3,7 +3,7 @@
 
 var test   =  require('tap').test
   , format =  require('util').format
-  , anchor =  require('..')
+  , anchor =  require('../lib');
 
 function checkResult(t, mode, header, repetition, href) {
   var expectedAnchor = format('[%s](%s)', header, href)
