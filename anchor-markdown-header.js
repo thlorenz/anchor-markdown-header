@@ -46,6 +46,11 @@ function getGithubId(text, repetition) {
   // Strip embedded markdown formatting
   text = removeMd(text)
 
+  // GitHub keeps only word characters, '-' and ' ' (its regex is /[^\p{Word}\- ]/u):
+  // letters, marks, decimal digits, connector punctuation and joiners (ZWJ/ZWNJ).
+  // Anything else left over (e.g. ^ × ÷ → € • ①) is removed.
+  text = text.replace(/[^\p{Alphabetic}\p{M}\p{Nd}\p{Pc}\p{Join_Control}\- ]/gu, '')
+
   return text;
 }
 
