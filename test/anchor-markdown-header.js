@@ -78,6 +78,13 @@ test('\ngenerating anchor in github mode', function (t) {
   , [ '_foo_bax_', null, '#foo_bax']
   , [ '10% off', null, '#10-off']
   , [ '1/2 affected', null, '#12-affected']
+  , [ 'x^2', null, '#x2']
+  , [ '1920 × 1080', null, '#1920--1080']
+  , [ 'a ÷ b', null, '#a--b']
+  , [ 'Release → v2', null, '#release--v2']
+  , [ 'Price in €', null, '#price-in-']
+  , [ 'a • b', null, '#a--b']
+  , [ 'step ① done', null, '#step--done']
   , [ '¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿Latin 1', null, '#%C2%AA%C2%B5%C2%BAlatin-1']
 
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
